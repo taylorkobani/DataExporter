@@ -15,3 +15,26 @@ The **Data Exporter** app is a small RESTful API implemented in .NET 6. It manag
 - The tasks can be completed in any order.
 - Any third party library can be used to implement some of the functionality required.
 - To test the API, any tool like cURL or Postman can be used and the scripts should be included in the submission.
+
+## Scripts for testing GetPolicy and GetPolicies end points using Postman
+
+### GetPolicies
+```javascript
+pm.test("Status OK", () => pm.response.code === 200);
+const list = pm.response.json();
+pm.test("Return type is array", () => Array.isArray(list));
+pm.test("Contains one of our created policies.", () => {
+const id = parseInt(pm.environment.get("policyId"));
+pm.expect(list.some(p => p.id === id)).to.be.true;
+});
+```
+
+### GetPolicy
+```javascript
+pm.test("Status ok", () => pm.response.code === 200);
+const body = pm.response.json();
+pm.test("Returns the requestd policy", () => {
+pm.expect(body.id).to.eql(parseInt(pm.environment.get("policyId")));
+pm.expect(body.policyNumber).to.eql(pm.environment.get("policyNumber"));
+});
+```
