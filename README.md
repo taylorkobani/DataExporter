@@ -19,6 +19,7 @@ The **Data Exporter** app is a small RESTful API implemented in .NET 6. It manag
 ## Scripts for testing GetPolicy and GetPolicies end points using Postman
 
 ### GetPolicies
+<pre>
 ```javascript
 pm.test("Status OK", () => pm.response.code === 200);
 const list = pm.response.json();
@@ -27,9 +28,10 @@ pm.test("Contains one of our created policies.", () => {
 const id = parseInt(pm.environment.get("policyId"));
 pm.expect(list.some(p => p.id === id)).to.be.true;
 });```
-
+</pre>
 
 ### GetPolicy
+<pre>
 ```javascript
 pm.test("Status ok", () => pm.response.code === 200);
 const body = pm.response.json();
@@ -38,3 +40,4 @@ pm.expect(body.id).to.eql(parseInt(pm.environment.get("policyId")));
 pm.expect(body.policyNumber).to.eql(pm.environment.get("policyNumber"));
 });
 ```
+  </pre>
