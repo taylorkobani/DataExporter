@@ -26,7 +26,8 @@ pm.test("Return type is array", () => Array.isArray(list));
 pm.test("Contains one of our created policies.", () => {
 const id = parseInt(pm.environment.get("policyId"));
 pm.expect(list.some(p => p.id === id)).to.be.true;
-}); ```
+});
+```
 
 ### GetPolicy
 ```javascript
